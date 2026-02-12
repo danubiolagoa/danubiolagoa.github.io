@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danúbio Lagoa | Desenvolvedor de Software</title>
+    <meta name="description" content="Portfolio de Danúbio Lagoa - Desenvolvedor especializado em Vibe Coding e inovações de IA">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Circuit Board Animation Background -->
+    <div class="circuit-pulse">
+        <div class="circuit-line"></div>
+        <div class="circuit-line"></div>
+        <div class="circuit-line"></div>
+        <div class="circuit-line"></div>
+        <div class="circuit-line vertical"></div>
+        <div class="circuit-line vertical"></div>
+        <div class="circuit-line vertical"></div>
+        <div class="circuit-line vertical"></div>
+        <div class="circuit-node"></div>
+        <div class="circuit-node"></div>
+        <div class="circuit-node"></div>
+        <div class="circuit-node"></div>
+        <div class="circuit-node"></div>
+        <div class="circuit-node"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">
+                    <span class="logo-bracket">&lt;</span>
+                    <span class="logo-text">Dev</span>
+                    <span class="logo-bracket">/&gt;</span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="#inicio" class="nav-link">Início</a></li>
+                    <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
+                    <li><a href="#projetos" class="nav-link">Projetos</a></li>
+                    <li><a href="#contato" class="nav-link">Contato</a></li>
+                </ul>
+                <button class="menu-toggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Disponível para projetos
+                </div>
+                <h1 class="hero-title">
+                    Olá, sou
+                    <span class="gradient-text">Danúbio Lagoa</span>
+                </h1>
+                <div class="typing-container">
+                    <span class="typing-text"></span>
+                    <span class="typing-cursor"></span>
+                </div>
+                <p class="hero-description">
+                    Especialista em Vibe Coding com TypeScript, JavaScript, React, Angular e CSS.
+                    Sempre por dentro das principais inovações de IA como Cursor, Trae, Claude Code e OpenCode.
+                    Formado em Administração de Empresas e Engenharia Civil.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projetos" class="btn btn-primary">
+                        <span>Ver Projetos</span>
+                    </a>
+                    <a href="#contato" class="btn btn-secondary">
+                        <span>Entre em Contato</span>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" data-count="5">0</span>
+                        <span class="stat-suffix">+</span>
+                        <span class="stat-label">Anos de Experiência</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-count="50">0</span>
+                        <span class="stat-suffix">+</span>
+                        <span class="stat-label">Projetos Entregues</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-count="30">0</span>
+                        <span class="stat-suffix">+</span>
+                        <span class="stat-label">Clientes Satisfeitos</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="code-window">
+                    <div class="code-header">
+                        <div class="code-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <span class="code-title">developer.js</span>
+                    </div>
+                    <div class="code-content">
+                        <pre><code><span class="code-keyword">const</span> <span class="code-variable">developer</span> = {
+  <span class="code-property">name</span>: <span class="code-string">'Danúbio Lagoa'</span>,
+  <span class="code-property">role</span>: <span class="code-string">'Vibe Coder & AI Enthusiast'</span>,
+  <span class="code-property">education</span>: [<span class="code-string">'Administração'</span>, 
+               <span class="code-string">'Engenharia Civil'</span>],
+  <span class="code-property">skills</span>: [<span class="code-string">'TypeScript'</span>, <span class="code-string">'React'</span>, 
+            <span class="code-string">'Angular'</span>, <span class="code-string">'CSS'</span>],
+  <span class="code-property">tools</span>: [<span class="code-string">'Cursor'</span>, <span class="code-string">'Trae'</span>, 
+           <span class="code-string">'Claude'</span>, <span class="code-string">'OpenCode'</span>],
+  
+  <span class="code-function">vibeCoding</span>: <span class="code-keyword">function</span>() {
+    <span class="code-keyword">return</span> <span class="code-string">'Always learning...'</span>;
+  }
+};</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="about section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Sobre Mim</span>
+                <h2 class="section-title">Quem sou eu?</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="about-avatar">
+                        <span>👨‍💻</span>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>Vibe Coding com <span class="gradient-text">foco em inovação</span></h3>
+                    <p>
+                        Sou formado em Administração de Empresas e Engenharia Civil, o que me dá
+                        uma visão única e multidisciplinar para resolver problemas através da tecnologia.
+                        Minha trajetória combina conhecimento de negócios com expertise técnica.
+                    </p>
+                    <p>
+                        Especialista em Vibe Coding, utilizo TypeScript, JavaScript, React, Angular e CSS
+                        para criar soluções modernas e eficientes. Estou sempre por dentro das principais
+                        inovações de IA, utilizando ferramentas como Cursor, Trae, Claude Code e OpenCode
+                        para maximizar produtividade e qualidade.
+                    </p>
+                    <p>
+                        Acredito no aprendizado contínuo e me atualizo constantemente para entregar
+                        sempre o melhor em cada projeto.
+                    </p>
+                    <a href="#" class="btn btn-outline">Download CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="habilidades" class="skills section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Habilidades</span>
+                <h2 class="section-title">Tecnologias que Domino</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card" data-skill="95">
+                    <h4>Vibe Coding</h4>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="90">
+                    <h4>TypeScript</h4>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="88">
+                    <h4>React</h4>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 88%"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="85">
+                    <h4>Angular</h4>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="87">
+                    <h4>JavaScript</h4>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 87%"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="90">
+                    <h4>CSS & Estilização</h4>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="92">
+                    <h4>IA & Ferramentas (Cursor, Trae, Claude, OpenCode)</h4>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 92%"></div>
+                    </div>
+                </div>
+                <div class="skill-card" data-skill="85">
+                    <h4>Gestão & Negócios</h4>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress: 85%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GitHub Stats Section -->
+            <div class="github-section">
+                <div class="github-header">
+                    <h3>GitHub Activity</h3>
+                    <a href="https://github.com/danubiolagoa" target="_blank" rel="noopener noreferrer" class="github-link">
+                        <span>Ver perfil no GitHub</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="github-stats">
+                    <div class="github-stat-card">
+                        <div class="stat-header">
+                            <svg class="github-icon" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            <span>GitHub Stats</span>
+                        </div>
+                        <div class="stat-grid">
+                            <div class="stat-item">
+                                <span class="stat-value" id="github-repos">--</span>
+                                <span class="stat-label">Repositórios</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value" id="github-commits">--</span>
+                                <span class="stat-label">Commits</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value" id="github-stars">--</span>
+                                <span class="stat-label">Stars</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="github-stat-card languages-card">
+                        <div class="stat-header">
+                            <svg class="code-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                            <span>Linguagens</span>
+                        </div>
+                        <div class="languages-list" id="languages-list">
+                            <div class="loading-langs">Carregando...</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="github-calendar">
+                    <div id="contribution-graph" class="contribution-graph-container">
+                        <div class="loading-graph">Carregando gráfico de contribuições...</div>
+                    </div>
+                    <p class="github-note">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1.5a.75.75 0 010 1.5h-.75v1.75a.75.75 0 01-1.5 0v-2.5z"/>
+                        </svg>
+                        Dados baseados na atividade pública recente. O gráfico pode não refletir todas as contribuições devido às limitações da API do GitHub.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projetos" class="projects section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Portfólio</span>
+                <h2 class="section-title">Projetos em Destaque</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">🚀</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Sistema de Gestão</h3>
+                        <p>Plataforma completa de gerenciamento empresarial com dashboard em tempo real.</p>
+                        <div class="project-tags">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-sm">Ver Projeto</a>
+                            <a href="#" class="btn btn-sm btn-outline">Código</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">🛒</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>E-commerce Moderno</h3>
+                        <p>Loja virtual com integração de pagamentos e painel administrativo.</p>
+                        <div class="project-tags">
+                            <span>Next.js</span>
+                            <span>Stripe</span>
+                            <span>PostgreSQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-sm">Ver Projeto</a>
+                            <a href="#" class="btn btn-sm btn-outline">Código</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">📱</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>App Mobile</h3>
+                        <p>Aplicativo de produtividade com sincronização em nuvem.</p>
+                        <div class="project-tags">
+                            <span>React Native</span>
+                            <span>Firebase</span>
+                            <span>Redux</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-sm">Ver Projeto</a>
+                            <a href="#" class="btn btn-sm btn-outline">Código</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="contact section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Contato</span>
+                <h2 class="section-title">Vamos trabalhar juntos?</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <h4>Email</h4>
+                            <p>danubiolagoa@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p>+55 (85) 98208-1965</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div>
+                            <h4>Localização</h4>
+                            <p>Fortaleza, Ceará - Brasil</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Seu Nome" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Seu Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Sua Mensagem" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Danúbio Lagoa. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="GitHub">GitHub</a>
+                    <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                    <a href="#" aria-label="Twitter">Twitter</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
