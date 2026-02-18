@@ -18,6 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
 </head>
 <body>
     <!-- Circuit Board Animation Background -->
@@ -305,15 +306,9 @@
                     </div>
                 </div>
                 <div class="github-calendar">
-                    <div id="contribution-graph" class="contribution-graph-container">
+                    <div id="contribution-graph" class="contribution-graph-container calendar">
                         <div class="loading-graph">Carregando gráfico de contribuições...</div>
                     </div>
-                    <p class="github-note">
-                        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1.5a.75.75 0 010 1.5h-.75v1.75a.75.75 0 01-1.5 0v-2.5z"/>
-                        </svg>
-                        Dados baseados na atividade pública recente. O gráfico pode não refletir todas as contribuições devido às limitações da API do GitHub.
-                    </p>
                 </div>
             </div>
         </div>
@@ -440,6 +435,7 @@
         <div id="caption" class="modal-caption"></div>
     </div>
 
+    <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

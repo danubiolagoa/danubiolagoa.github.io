@@ -2117,3 +2117,86 @@ body.pixel-mode pre code {
     }
 }
 
+/* GitHub Calendar Overrides */
+.calendar {
+    font-family: 'Inter', sans-serif;
+    color: var(--gray-light);
+    border: none !important;
+    width: 100% !important;
+    min-height: auto !important;
+    padding: 1rem 0;
+}
+
+.calendar .width-full {
+    width: 100% !important;
+}
+
+/* Calendar Text */
+.calendar text.ContributionCalendar-label {
+    fill: var(--gray) !important;
+    font-size: 10px;
+}
+
+/* Day squares */
+.calendar .ContributionCalendar-day[data-level="0"] {
+    fill: rgba(30, 41, 59, 0.5) !important;
+    shape-rendering: geometricPrecision; 
+    rx: 2;
+    ry: 2;
+}
+
+.calendar .ContributionCalendar-day[data-level="1"] {
+    fill: rgba(34, 197, 94, 0.3) !important;
+    rx: 2;
+    ry: 2;
+}
+
+.calendar .ContributionCalendar-day[data-level="2"] {
+    fill: rgba(34, 197, 94, 0.5) !important;
+    rx: 2;
+    ry: 2;
+}
+
+.calendar .ContributionCalendar-day[data-level="3"] {
+    fill: rgba(34, 197, 94, 0.7) !important;
+    rx: 2;
+    ry: 2;
+}
+
+.calendar .ContributionCalendar-day[data-level="4"] {
+    fill: rgba(34, 197, 94, 0.9) !important;
+    rx: 2;
+    ry: 2;
+}
+
+/* Legend */
+.calendar .contrib-legend .legend li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    margin: 0 2px;
+}
+
+.calendar .contrib-footer {
+    font-size: 11px;
+    color: var(--gray) !important;
+    margin-top: 10px;
+}
+
+.calendar .contrib-footer a {
+    color: var(--accent) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .calendar {
+        overflow-x: auto;
+        padding-bottom: 1rem;
+    }
+    
+    .calendar .js-calendar-graph-svg {
+        min-width: 600px; /* Ensure graph doesn't shrink too much */
+    }
+}
+
