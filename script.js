@@ -517,4 +517,46 @@ document.addEventListener('DOMContentLoaded', function() {
     fetchGitHubStats();
     fetchGitHubLanguages();
     fetchContributionGraph();
+
+    // Image Modal Logic
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById("img01");
+    const captionText = document.getElementById("caption");
+    const closeBtn = document.getElementsByClassName("modal-close")[0];
+
+    document.querySelectorAll('.project-image').forEach(imgContainer => {
+        imgContainer.addEventListener('click', function() {
+            const img = this.querySelector('img');
+            if (img) {
+                modal.style.display = "block";
+                modalImg.src = img.src;
+                captionText.innerHTML = img.alt;
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }
+        });
+    });
+
+    if (closeBtn) {
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+            document.body.style.overflow = 'auto'; // Enable scrolling
+        }
+    }
+
+    if (modal) {
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = 'auto'; // Enable scrolling
+            }
+        }
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape" && modal.style.display === "block") {
+            modal.style.display = "none";
+            document.body.style.overflow = 'auto';
+        }
+    });
 });
