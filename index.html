@@ -400,15 +400,24 @@
                         </div>
                     </div>
                 </div>
-                <form class="contact-form">
+                <form action="https://formsubmit.co/danubiolagoa@gmail.com" method="POST" class="contact-form">
+                    <!-- Configurações do FormSubmit -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://danubiolagoa.com/">
+                    <input type="hidden" name="_subject" value="Novo contato do site!">
+                    <input type="hidden" name="_template" value="table">
+
                     <div class="form-group">
-                        <input type="text" placeholder="Seu Nome" required>
+                        <label for="name" class="sr-only">Seu Nome</label>
+                        <input type="text" id="name" name="name" placeholder="Seu Nome" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="Seu Email" required>
+                        <label for="email" class="sr-only">Seu Email</label>
+                        <input type="email" id="email" name="email" placeholder="Seu Email" required>
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Sua Mensagem" rows="5" required></textarea>
+                        <label for="message" class="sr-only">Sua Mensagem</label>
+                        <textarea id="message" name="message" placeholder="Sua Mensagem" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
                 </form>

@@ -175,18 +175,41 @@ document.addEventListener('DOMContentLoaded', function() {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Show success message
             const btn = contactForm.querySelector('button[type="submit"]');
             const originalText = btn.textContent;
             
-            btn.textContent = 'Mensagem Enviada!';
-            btn.style.background = '#22c55e';
-            
-            setTimeout(() => {
-                btn.textContent = originalText;
-                btn.style.background = '';
-                contactForm.reset();
-            }, 3000);
+            btn.textContent = 'Enviando...';
+            btn.disabled = true;
+
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    btn.textContent = 'Mensagem Enviada!';
+                    btn.style.background = '#22c55e';
+                    contactForm.reset();
+                } else {
+                    btn.textContent = 'Erro no envio';
+                    btn.style.background = '#ef4444';
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                btn.textContent = 'Erro no envio';
+                btn.style.background = '#ef4444';
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                    btn.disabled = false;
+                }, 3000);
+            });
         });
     }
 
