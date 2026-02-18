@@ -304,12 +304,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const calendarGraph = document.querySelector('.js-yearly-contributions');
             if (calendarGraph) {
                 const contributionText = calendarGraph.querySelector('h2');
-                // Geralmente o texto é algo como "2,345 contributions in the last year"
                 if (contributionText) {
+                    // Texto ex: "2,345 contributions in the last year"
+                    // Regex para pegar o primeiro número (pode ter vírgula ou ponto)
                     const text = contributionText.textContent;
-                    const match = text.match(/(\d+(?:,\d+)*)/);
+                    const match = text.match(/([\d,.]+)\s/);
                     if (match) {
-                        const count = match[0];
+                        const count = match[1];
                         const commitsEl = document.getElementById('github-commits');
                         if (commitsEl) commitsEl.textContent = count;
                     }
@@ -317,12 +318,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }).catch(err => {
             console.error("Erro ao carregar GitHub Calendar:", err);
-            const container = document.getElementById('contribution-graph');
+            const container = document.querySelector('.calendar');
             if (container) {
                 container.innerHTML = `
                     <div style="text-align: center; padding: 2rem; color: var(--gray);">
                         <p>Não foi possível carregar o gráfico de contribuições.</p>
-                        <a href="https://github.com/${GITHUB_USERNAME}" target="_blank" style="color: var(--accent);">Ver no GitHub</a>
+                        <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.8;">${err.message}</p>
+                        <a href="https://github.com/${GITHUB_USERNAME}" target="_blank" style="color: var(--accent); margin-top: 1rem; display: inline-block;">Ver no GitHub</a>
                     </div>
                 `;
             }

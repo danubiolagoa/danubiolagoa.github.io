@@ -2131,10 +2131,18 @@ body.pixel-mode pre code {
     width: 100% !important;
 }
 
-/* Calendar Text */
-.calendar text.ContributionCalendar-label {
+/* Calendar Text Visibility */
+.calendar text.ContributionCalendar-label,
+.calendar .wday, 
+.calendar .month {
     fill: var(--gray) !important;
     font-size: 10px;
+    visibility: visible !important;
+}
+
+/* Ensure graph container has enough height */
+.js-calendar-graph-svg {
+    min-height: 120px;
 }
 
 /* Day squares */
