@@ -1332,6 +1332,18 @@ section, header, footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden; /* Ensure image doesn't overflow */
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
 }
 
 .project-placeholder {
