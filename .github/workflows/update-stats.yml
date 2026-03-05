@@ -4,9 +4,11 @@ on:
   schedule:
     # Run daily at 00:00 UTC
     - cron: '0 0 * * *'
-  push:
-    branches: [ main, master ]
   workflow_dispatch: # Allows manual trigger
+
+concurrency:
+  group: update-github-stats
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -18,7 +20,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        token: ${{ secrets.GH_TOKEN }}
+        token: ${{ github.token }}
         fetch-depth: 0
     
     - name: Setup Node.js
@@ -28,7 +30,7 @@ jobs:
     
     - name: Fetch GitHub Contribution Data
       env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        GH_TOKEN: ${{ github.token }}
         GITHUB_USERNAME: danubiolagoa
       run: |
         node -e "
