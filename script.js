@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const typingText = document.querySelector('.typing-text');
-    const words = ['Vibe Coder', 'Especialista em IA', 'React & Angular Dev', 'TypeScript Enthusiast', 'Inovador em Tecnologia'];
+    const words = ['Desenvolvedor Full Stack', 'Especialista em IA', 'React & Angular Dev', 'TypeScript Enthusiast', 'Inovador em Tecnologia'];
     
     if (typingText) {
         new TypeWriter(typingText, words);
@@ -444,23 +444,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeBtn = document.querySelector(".modal-close");
 
     if (modal && modalImg) {
-        // Add click event to all project cards
-        document.querySelectorAll('.project-card').forEach(card => {
+        // Add click event to all project and certificate cards
+        const cards = document.querySelectorAll('.project-card, .certificate-card');
+        cards.forEach(card => {
             card.addEventListener('click', function(e) {
-                // Prevent opening if clicking on a link
-                if (e.target.closest('a')) return;
+                // Prevent opening if clicking on a link or button
+                if (e.target.closest('a') || e.target.closest('button')) return;
                 
                 const img = this.querySelector('img');
                 if (img) {
-                    console.log('Opening modal for:', img.src);
                     modal.style.display = "flex"; // Changed to flex for centering
-                    modal.style.alignItems = "center";
-                    modal.style.justifyContent = "center";
                     modalImg.src = img.src;
-                    captionText.innerHTML = img.alt || "Imagem do Projeto";
+                    captionText.innerHTML = img.alt || "Visualização";
                     document.body.style.overflow = 'hidden'; // Prevent scrolling
-                } else {
-                    console.log('No image found in card');
                 }
             });
         });
