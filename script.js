@@ -321,7 +321,8 @@ document.addEventListener('DOMContentLoaded', function() {
         GitHubCalendar(".calendar", GITHUB_USERNAME, {
             responsive: true,
             tooltips: true,
-            global_stats: false
+            global_stats: false,
+            from: '2026-01-01'
         }).then(function() {
             // Tentar atualizar o contador de commits se possível
             const calendarGraph = document.querySelector('.js-yearly-contributions');
