@@ -41,7 +41,9 @@ table.ContributionCalendar-grid td span.sr-only {
 .calendar .sr-only.position-absolute,
 .calendar-graph .sr-only,
 .contributions-settings-link + .sr-only,
-[role="link"].sr-only {
+[role="link"].sr-only,
+.calendar a.show-on-focus,
+a[href="#year-link-2026"].show-on-focus {
     display: none !important;
 }
 
