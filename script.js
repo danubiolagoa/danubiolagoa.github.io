@@ -321,9 +321,32 @@ document.addEventListener('DOMContentLoaded', function() {
         GitHubCalendar(".calendar", GITHUB_USERNAME, {
             responsive: true,
             tooltips: true,
-            global_stats: false,
-            from: '2026-01-01'
+            global_stats: false
         }).then(function() {
+            // Remover meses anteriores a janeiro de 2026
+            const months = document.querySelector('.months');
+            if (months) {
+                const monthLabels = months.querySelectorAll('span');
+                let showFromJan = false;
+                monthLabels.forEach(month => {
+                    if (month.textContent.includes('Jan')) {
+                        showFromJan = true;
+                    }
+                    if (!showFromJan) {
+                        month.style.display = 'none';
+                    }
+                });
+            }
+            // Remover dias anteriores a janeiro de 2026
+            const days = document.querySelectorAll('.ContributionCalendar-day, .day');
+            const startDate = new Date('2026-01-01');
+            days.forEach(day => {
+                const dateAttr = day.getAttribute('data-date');
+                if (dateAttr && new Date(dateAttr) < startDate) {
+                    day.style.display = 'none';
+                }
+            });
+
             // Tentar atualizar o contador de commits se possível
             const calendarGraph = document.querySelector('.js-yearly-contributions');
             if (calendarGraph) {

@@ -958,6 +958,14 @@ section, header, footer {
     display: none !important;
 }
 
+.github-calendar .calendar-graph {
+    overflow: hidden;
+}
+
+.github-calendar .months {
+    width: calc(100% - 20px);
+}
+
 .github-calendar-img {
     width: 100%;
     min-width: 600px;
