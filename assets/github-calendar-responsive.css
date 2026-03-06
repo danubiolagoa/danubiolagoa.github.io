@@ -38,6 +38,13 @@ table.ContributionCalendar-grid td span.sr-only {
     display: none;
 }
 
+.calendar .sr-only.position-absolute,
+.calendar-graph .sr-only,
+.contributions-settings-link + .sr-only,
+[role="link"].sr-only {
+    display: none !important;
+}
+
 td.ContributionCalendar-label span[aria-hidden='true'] {
     font-size: 8pt;
     left: -1pt;
