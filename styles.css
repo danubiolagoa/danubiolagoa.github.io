@@ -1584,6 +1584,8 @@ body.pixel-mode .certificate-image img {
         padding-bottom: 4rem;
     }
 
+    .hero-image,
+    .section-header,
     .about-content,
     .skills-grid,
     .github-section,
@@ -1592,7 +1594,8 @@ body.pixel-mode .certificate-image img {
     .certificates-grid,
     .contact-content,
     .footer-content {
-        width: min(100%, 36rem);
+        width: 100%;
+        max-width: 500px;
         margin-inline: auto;
     }
 
@@ -1622,9 +1625,11 @@ body.pixel-mode .certificate-image img {
         margin-inline: auto;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
+        text-align: left;
     }
 
+    .about-text h3,
     .about-text p,
     .project-content,
     .certificate-content,
@@ -1636,7 +1641,7 @@ body.pixel-mode .certificate-image img {
     .about-text .btn {
         width: auto;
         max-width: 100%;
-        align-self: center;
+        align-self: flex-start;
     }
 
     .hero-title {
@@ -1699,6 +1704,10 @@ body.pixel-mode .certificate-image img {
         align-items: flex-start;
     }
 
+    .id-card {
+        margin-inline: auto;
+    }
+
     .pixel-toggle {
         width: 52px;
         height: 52px;
@@ -1718,6 +1727,8 @@ body.pixel-mode .certificate-image img {
         padding: 0 1rem;
     }
 
+    .hero-image,
+    .section-header,
     .about-content,
     .skills-grid,
     .github-section,
@@ -1778,6 +1789,10 @@ body.pixel-mode .certificate-image img {
 
     .about-image {
         padding-inline: 0;
+    }
+
+    .about-text h3 {
+        font-size: 1.6rem;
     }
 }
 
