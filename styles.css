@@ -1549,6 +1549,10 @@ body.pixel-mode .certificate-image img {
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+
     .nav {
         position: relative;
         gap: 1rem;
@@ -1595,15 +1599,24 @@ body.pixel-mode .certificate-image img {
     .contact-content,
     .footer-content {
         width: 100%;
-        max-width: 500px;
         margin-inline: auto;
+    }
+
+    .about-content,
+    .skills-grid,
+    .github-stats,
+    .projects-grid,
+    .certificates-grid,
+    .contact-content {
+        grid-template-columns: 1fr;
     }
 
     .skills-grid,
     .github-stats,
     .projects-grid,
     .certificates-grid {
-        justify-items: center;
+        justify-items: stretch;
+        gap: 1rem;
     }
 
     .skill-card,
@@ -1675,8 +1688,25 @@ body.pixel-mode .certificate-image img {
         font-size: 2rem;
     }
 
+    .section-header {
+        margin-bottom: 2.5rem;
+    }
+
     .github-section {
-        padding: 1.5rem;
+        padding: 1rem;
+    }
+
+    .skill-card,
+    .github-stat-card,
+    .project-content,
+    .certificate-content,
+    .contact-mini-card {
+        padding: 1rem;
+    }
+
+    .about-text h3 {
+        font-size: 1.8rem;
+        line-height: 1.3;
     }
 
     .github-header,
@@ -1723,10 +1753,6 @@ body.pixel-mode .certificate-image img {
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 0 1rem;
-    }
-
     .hero-image,
     .section-header,
     .about-content,
