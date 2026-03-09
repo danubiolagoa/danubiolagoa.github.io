@@ -1638,7 +1638,30 @@ body.pixel-mode .certificate-image img {
     }
 
     .hero .container {
-        gap: 2.5rem;
+        gap: 2rem;
+    }
+
+    .hero-content,
+    .hero-image,
+    .section-header,
+    .about-content,
+    .skills-grid,
+    .github-section,
+    .github-stats,
+    .projects-grid,
+    .certificates-grid,
+    .contact-content,
+    .footer-content {
+        width: min(100%, 34rem);
+        margin-inline: auto;
+    }
+
+    .hero-image {
+        overflow: hidden;
+    }
+
+    .code-window {
+        max-width: none;
     }
 
     .hero-content {
@@ -1819,8 +1842,22 @@ body.pixel-mode .certificate-image img {
     }
 
     .hero {
-        padding-top: 6rem;
+        padding-top: 5.75rem;
         padding-bottom: 3.5rem;
+    }
+
+    .hero-content,
+    .hero-image,
+    .section-header,
+    .about-content,
+    .skills-grid,
+    .github-section,
+    .github-stats,
+    .projects-grid,
+    .certificates-grid,
+    .contact-content,
+    .footer-content {
+        width: 100%;
     }
 
     .hero-title {
@@ -2005,7 +2042,7 @@ body.pixel-mode .circuit-line {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 900;
     transition: all 0.3s;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
@@ -2144,4 +2181,5 @@ body.pixel-mode .pixel-toggle i {
         height: 40px;
     }
 }
+
 
