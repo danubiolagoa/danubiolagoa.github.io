@@ -46,8 +46,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.querySelector('.nav-menu');
 
     if (menuToggle) {
+        menuToggle.setAttribute('aria-expanded', 'false');
+
         menuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
+            const isOpen = navMenu.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', String(isOpen));
         });
     }
 
@@ -55,7 +58,19 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', function() {
             navMenu.classList.remove('active');
+            if (menuToggle) {
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
         });
+    });
+
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            if (menuToggle) {
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        }
     });
 
     // Typing Effect
