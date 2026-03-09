@@ -1611,6 +1611,10 @@ body.pixel-mode .certificate-image img {
         grid-template-columns: 1fr;
     }
 
+    .about-content {
+        gap: 1.5rem;
+    }
+
     .skills-grid,
     .github-stats,
     .projects-grid,
@@ -1631,6 +1635,14 @@ body.pixel-mode .certificate-image img {
     .about-image {
         width: 100%;
         padding: 0;
+    }
+
+    .id-card {
+        width: 100%;
+        max-width: none;
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 5 / 7;
     }
 
     .about-text {
@@ -1819,6 +1831,11 @@ body.pixel-mode .certificate-image img {
 
     .about-text h3 {
         font-size: 1.6rem;
+    }
+
+    .id-card {
+        max-width: none;
+        min-height: 0;
     }
 }
 
