@@ -1509,38 +1509,48 @@ body.pixel-mode .certificate-image img {
         padding: 0 1.5rem;
     }
 
-    .hero .container {
+    .hero {
+        min-height: auto;
+        padding-top: 7rem;
+        padding-bottom: 4.5rem;
+    }
+
+    .hero .container,
+    .about-content,
+    .contact-content {
         grid-template-columns: 1fr;
-        text-align: center;
         gap: 3rem;
     }
 
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-badge,
+    .hero-description,
+    .hero-buttons,
+    .hero-stats {
+        margin-inline: auto;
+    }
+
+    .hero-description {
+        max-width: 42rem;
+    }
+
+    .hero-buttons,
     .hero-stats {
         justify-content: center;
     }
 
-    .hero-buttons {
-        justify-content: center;
-    }
-
-    .about-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 2.5rem;
-    }
-
     .about-image {
         order: -1;
+        padding: 0;
     }
 
-    .about-content ul {
-        display: inline-block;
+    .about-text {
+        max-width: 46rem;
+        margin: 0 auto;
         text-align: left;
-    }
-
-    .contact-content {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
     }
 
     .github-section {
@@ -1553,9 +1563,18 @@ body.pixel-mode .certificate-image img {
         padding: 0 1rem;
     }
 
+    .header {
+        background: rgba(15, 23, 42, 0.96);
+    }
+
     .nav {
         position: relative;
-        gap: 1rem;
+        height: 72px;
+        gap: 0.75rem;
+    }
+
+    .logo {
+        font-size: 1.25rem;
     }
 
     .nav-menu {
@@ -1565,160 +1584,138 @@ body.pixel-mode .certificate-image img {
         left: 0;
         right: 0;
         flex-direction: column;
-        gap: 0.5rem;
-        padding: 1rem;
-        background: rgba(15, 23, 42, 0.98);
+        align-items: stretch;
+        gap: 0.4rem;
+        padding: 0.85rem;
+        background: rgba(2, 6, 23, 0.98);
         border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 16px;
-        box-shadow: var(--shadow);
-        backdrop-filter: blur(14px);
+        border-radius: 18px;
+        box-shadow: 0 24px 45px rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(18px);
     }
 
     .nav-menu.active {
         display: flex;
     }
 
+    .nav-menu li {
+        width: 100%;
+    }
+
+    .nav-link {
+        display: block;
+        width: 100%;
+        padding: 0.9rem 1rem;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.03);
+    }
+
+    .nav-link::after {
+        display: none;
+    }
+
+    .nav-link.active,
+    .nav-link:hover {
+        color: var(--light);
+        background: rgba(99, 102, 241, 0.14);
+    }
+
     .menu-toggle {
         display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        margin-left: auto;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .hero {
-        min-height: auto;
-        padding-top: 120px;
+        padding-top: 6.5rem;
         padding-bottom: 4rem;
     }
 
-    .hero-image,
-    .section-header,
-    .about-content,
-    .skills-grid,
-    .github-section,
-    .github-stats,
-    .projects-grid,
-    .certificates-grid,
-    .contact-content,
-    .footer-content {
-        width: 100%;
-        margin-inline: auto;
+    .hero .container {
+        gap: 2.5rem;
     }
 
-    .about-content,
-    .skills-grid,
-    .github-stats,
-    .projects-grid,
-    .certificates-grid,
-    .contact-content {
-        grid-template-columns: 1fr;
-    }
-
-    .about-content {
-        gap: 1.5rem;
-    }
-
-    .skills-grid,
-    .github-stats,
-    .projects-grid,
-    .certificates-grid {
-        justify-items: stretch;
-        gap: 1rem;
-    }
-
-    .skill-card,
-    .github-stat-card,
-    .project-card,
-    .certificate-card,
-    .contact-mini-card,
-    .contact-form {
-        width: 100%;
-    }
-
-    .about-image {
-        width: 100%;
-        padding: 0;
-    }
-
-    .id-card {
-        width: 100%;
-        max-width: none;
-        height: auto;
-        min-height: 0;
-        aspect-ratio: 5 / 7;
-    }
-
-    .about-text {
-        width: 100%;
-        margin-inline: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+    .hero-content {
         text-align: left;
     }
 
-    .about-text h3,
-    .about-text p,
-    .project-content,
-    .certificate-content,
-    .contact-info,
-    .contact-form {
-        width: 100%;
-    }
-
-    .about-text .btn {
-        width: auto;
-        max-width: 100%;
-        align-self: flex-start;
+    .hero-badge,
+    .hero-description,
+    .hero-buttons {
+        margin-inline: 0;
     }
 
     .hero-title {
-        font-size: 2.5rem;
+        font-size: clamp(2.4rem, 8vw, 3.4rem);
     }
 
     .typing-container {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        min-height: 3rem;
     }
 
     .hero-description {
+        font-size: 1rem;
         max-width: none;
     }
 
     .hero-buttons {
         flex-direction: column;
         align-items: stretch;
+        gap: 0.75rem;
         margin-bottom: 0;
     }
 
     .btn {
-        justify-content: center;
         width: 100%;
+        justify-content: center;
     }
 
     .section {
         padding: 4.5rem 0;
     }
 
-    .section-title {
-        font-size: 2rem;
-    }
-
     .section-header {
         margin-bottom: 2.5rem;
     }
 
-    .github-section {
-        padding: 1rem;
+    .section-title {
+        font-size: 2rem;
     }
 
-    .skill-card,
+    .skills-grid,
+    .github-stats,
+    .projects-grid,
+    .certificates-grid,
+    .contact-content,
+    .stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid,
+    .github-stats,
+    .projects-grid,
+    .certificates-grid {
+        gap: 1rem;
+    }
+
+    .github-section,
+    .project-card,
+    .certificate-card,
     .github-stat-card,
-    .project-content,
-    .certificate-content,
+    .contact-form,
     .contact-mini-card {
-        padding: 1rem;
+        width: 100%;
     }
 
-    .about-text h3 {
-        font-size: 1.8rem;
-        line-height: 1.3;
+    .github-section {
+        padding: 1.25rem;
     }
 
     .github-header,
@@ -1733,21 +1730,65 @@ body.pixel-mode .certificate-image img {
         justify-content: center;
     }
 
-    .stat-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
     .lang-item {
         flex-wrap: wrap;
+        row-gap: 0.5rem;
+    }
+
+    .lang-name,
+    .lang-percent {
+        width: auto;
+    }
+
+    .about-content {
+        gap: 2rem;
+    }
+
+    .id-card {
+        width: min(100%, 340px);
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 5 / 7;
+        margin-inline: auto;
+    }
+
+    .id-card-inner {
+        padding: 1.25rem;
+    }
+
+    .about-text h3 {
+        font-size: 1.75rem;
+        line-height: 1.3;
+    }
+
+    .about-text .btn {
+        width: auto;
+        max-width: 100%;
+    }
+
+    .project-content,
+    .certificate-content,
+    .contact-form,
+    .contact-mini-card {
+        padding: 1rem;
+    }
+
+    .contact-content {
+        gap: 1.5rem;
+    }
+
+    .contact-info,
+    .contact-form {
+        width: 100%;
     }
 
     .contact-mini-card {
         align-items: flex-start;
     }
 
-    .id-card {
-        margin-inline: auto;
+    .credential-code,
+    .mini-card-details p {
+        overflow-wrap: anywhere;
     }
 
     .pixel-toggle {
@@ -1765,26 +1806,30 @@ body.pixel-mode .certificate-image img {
 }
 
 @media (max-width: 480px) {
-    .hero-image,
-    .section-header,
-    .about-content,
-    .skills-grid,
-    .github-section,
-    .github-stats,
-    .projects-grid,
-    .certificates-grid,
-    .contact-content,
-    .footer-content {
-        width: 100%;
+    .container {
+        padding: 0 0.9rem;
+    }
+
+    .nav {
+        height: 68px;
+    }
+
+    .logo {
+        font-size: 1.1rem;
+    }
+
+    .hero {
+        padding-top: 6rem;
+        padding-bottom: 3.5rem;
     }
 
     .hero-title {
-        font-size: 2rem;
+        font-size: clamp(2rem, 10vw, 2.6rem);
     }
 
     .typing-container {
-        font-size: 1rem;
-        min-height: 3rem;
+        font-size: 0.98rem;
+        min-height: 3.2rem;
     }
 
     .code-header,
@@ -1794,21 +1839,20 @@ body.pixel-mode .certificate-image img {
     }
 
     .code-content {
-        font-size: 0.75rem;
-        line-height: 1.6;
+        font-size: 0.72rem;
+        line-height: 1.55;
     }
 
-    .projects-grid,
-    .skills-grid,
-    .certificates-grid,
-    .github-stats {
-        gap: 1.25rem;
+    .section {
+        padding: 4rem 0;
     }
 
-    .project-card,
-    .certificate-card,
-    .github-stat-card {
-        border-radius: 14px;
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .about-text h3 {
+        font-size: 1.45rem;
     }
 
     .project-image,
@@ -1817,7 +1861,8 @@ body.pixel-mode .certificate-image img {
     }
 
     .contact-mini-card {
-        padding: 0.9rem 1rem;
+        gap: 0.85rem;
+        padding: 0.9rem;
     }
 
     .mini-card-icon {
@@ -1825,20 +1870,19 @@ body.pixel-mode .certificate-image img {
         height: 42px;
     }
 
-    .about-image {
-        padding-inline: 0;
-    }
-
-    .about-text h3 {
-        font-size: 1.6rem;
-    }
-
     .id-card {
-        max-width: none;
-        min-height: 0;
+        width: min(100%, 300px);
+    }
+
+    .id-card-photo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .id-name {
+        font-size: 1.15rem;
     }
 }
-
 /* Pixel Art Mode */
 body.pixel-mode {
     font-family: 'Press Start 2P', cursive;
@@ -2001,32 +2045,6 @@ body.pixel-mode .pixel-toggle i {
     animation: fadeIn 0.8s ease forwards;
 }
 
-/* Responsive ID Card */
-@media (max-width: 968px) {
-    .id-card {
-        width: 280px;
-        height: 380px;
-    }
-}
-
-@media (max-width: 480px) {
-    .id-card {
-        width: 100%;
-        max-width: 300px;
-        height: auto;
-        min-height: 400px;
-    }
-    
-    .id-card-photo {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .id-name {
-        font-size: 1.2rem;
-    }
-}
-
 /* Utility classes */
 .sr-only {
     position: absolute;
@@ -2126,3 +2144,4 @@ body.pixel-mode .pixel-toggle i {
         height: 40px;
     }
 }
+
