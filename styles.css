@@ -278,10 +278,14 @@ section, header, footer {
     font-weight: 700;
     text-decoration: none;
     color: var(--light);
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
 }
 
 .logo-bracket {
     color: var(--accent);
+    flex-shrink: 0;
 }
 
 .logo-text {
@@ -289,12 +293,20 @@ section, header, footer {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    flex-shrink: 0;
 }
 
 .nav-menu {
     display: flex;
     list-style: none;
     gap: 2rem;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 1rem;
 }
 
 .nav-link {
@@ -981,6 +993,132 @@ section, header, footer {
     filter: brightness(1.1) contrast(1.1);
 }
 
+/* Custom Contribution Graph */
+.github-chart-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.github-chart-wrapper svg {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+.github-chart-wrapper rect {
+    rx: 2;
+    ry: 2;
+}
+
+/* Contribution Graph Container - Ano Corrente */
+.contribution-graph-container {
+    width: 100%;
+    overflow-x: auto;
+    padding: 1rem 0;
+}
+
+.months-row {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 0.5rem;
+    padding-left: 30px;
+    min-width: fit-content;
+}
+
+.month {
+    font-size: 0.65rem;
+    color: var(--gray);
+    width: 48px;
+    text-align: center;
+}
+
+.graph-grid {
+    display: flex;
+    gap: 3px;
+    padding-bottom: 0.5rem;
+}
+
+.week-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.day-cell {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.day-cell:hover {
+    transform: scale(1.2);
+}
+
+.day-cell.level-0 { background: rgba(255, 255, 255, 0.05); } /* Cor de fundo padrão */
+.day-cell.level-1 { background: #0e4429; }
+.day-cell.level-2 { background: #006d32; }
+.day-cell.level-3 { background: #26a641; }
+.day-cell.level-4 { background: #39d353; }
+
+.graph-legend {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.25rem;
+    margin-top: 0.75rem;
+    font-size: 0.7rem;
+    color: var(--gray);
+}
+
+.legend-cell {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+}
+
+.legend-cell.level-0 { background: rgba(255, 255, 255, 0.05); }
+.legend-cell.level-1 { background: #0e4429; }
+.legend-cell.level-2 { background: #006d32; }
+.legend-cell.level-3 { background: #26a641; }
+.legend-cell.level-4 { background: #39d353; }
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .github-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
+    }
+
+    .stat-value {
+        font-size: 1.25rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+    }
+
+    .months-row {
+        padding-left: 0;
+        gap: 4px;
+    }
+    
+    .month {
+        min-width: 32px;
+        font-size: 0.6rem;
+    }
+    
+    .contribution-graph-container {
+        padding-bottom: 1rem;
+    }
+}
+
 /* GitHub Stats Cards */
 .github-stat-card {
     background: rgba(15, 23, 42, 0.6);
@@ -1019,8 +1157,8 @@ section, header, footer {
 }
 .stat-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
 }
 
 .stat-item {
@@ -1620,16 +1758,65 @@ body.pixel-mode .certificate-image img {
         background: rgba(99, 102, 241, 0.14);
     }
 
-    .menu-toggle {
+    .nav-actions {
         display: flex;
         align-items: center;
+        gap: 0.5rem;
+    }
+
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
+        gap: 5px;
         width: 44px;
         height: 44px;
-        margin-left: auto;
         border-radius: 12px;
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.08);
+        position: relative;
+        z-index: 2;
+    }
+
+    .pixel-toggle {
+        position: relative;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 1;
+        transition: all 0.3s;
+    }
+
+    .lang-toggle {
+        position: relative;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 1;
+        transition: all 0.3s;
+    }
+
+    .lang-toggle:hover,
+    .pixel-toggle:hover {
+        transform: scale(1.05);
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .lang-icon {
+        font-size: 1.5rem;
     }
 
     .hero {
@@ -1812,13 +1999,6 @@ body.pixel-mode .certificate-image img {
     .credential-code,
     .mini-card-details p {
         overflow-wrap: anywhere;
-    }
-
-    .pixel-toggle {
-        width: 52px;
-        height: 52px;
-        right: 1rem;
-        bottom: 1rem;
     }
 
     .modal-caption {
@@ -2028,48 +2208,48 @@ body.pixel-mode .circuit-line {
 }
 
 /* Pixel Toggle Button */
-.pixel-toggle {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 60px;
-    height: 60px;
-    background: rgba(15, 23, 42, 0.8);
+/* Pixel Toggle Button Styles */
+.pixel-toggle, .lang-toggle {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 900;
     transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    color: var(--light);
 }
 
-.pixel-toggle:hover {
+.pixel-toggle:hover, .lang-toggle:hover {
     transform: scale(1.1);
     background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary);
 }
 
 .pixel-icon {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
-body.pixel-mode .pixel-toggle {
+.lang-icon {
+    font-size: 1.2rem;
+}
+
+body.pixel-mode .pixel-toggle,
+body.pixel-mode .lang-toggle {
     border-radius: 0;
     box-shadow: 4px 4px 0 0 var(--accent);
-    border-color: var(--accent);
+    border: 2px solid var(--accent);
     background: #000;
 }
 
-body.pixel-mode .pixel-toggle:hover {
+body.pixel-mode .pixel-toggle:hover,
+body.pixel-mode .lang-toggle:hover {
     transform: translate(2px, 2px);
     box-shadow: 2px 2px 0 0 var(--accent);
-}
-
-body.pixel-mode .pixel-toggle i {
-    font-family: var(--pixel-font-body);
 }
 
 /* Animations */

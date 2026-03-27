@@ -1,4 +1,78 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Language Toggle System
+    let translations = {};
+    let currentLang = localStorage.getItem('lang') || 'pt';
+    let twInstance = null;
+
+    // Load translations
+    async function loadTranslations() {
+        try {
+            const response = await fetch('translations.json');
+            translations = await response.json();
+            applyTranslations();
+        } catch (error) {
+            console.error('Error loading translations:', error);
+        }
+    }
+
+    // Apply translations to elements
+    function applyTranslations() {
+        // Text content
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[currentLang] && translations[currentLang][key]) {
+                el.textContent = translations[currentLang][key];
+            }
+        });
+
+        // Placeholders
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (translations[currentLang] && translations[currentLang][key]) {
+                el.setAttribute('placeholder', translations[currentLang][key]);
+            }
+        });
+
+        // Update lang toggle button
+        updateLangButton();
+
+        // Update HTML lang attribute
+        document.documentElement.lang = currentLang;
+
+        // Update typewriter words
+        if (twInstance && translations[currentLang] && translations[currentLang]['typewriter.words']) {
+            const wordsStr = translations[currentLang]['typewriter.words'];
+            const wordsArr = wordsStr.split(',').map(s => s.trim());
+            twInstance.updateWords(wordsArr);
+        }
+    }
+
+    // Update language toggle button
+    function updateLangButton() {
+        const langToggle = document.querySelector('.lang-toggle');
+        const langIcon = langToggle?.querySelector('.lang-icon');
+        if (langIcon) {
+            // Se o idioma atual for PT, mostra a bandeira US para indicar a troca
+            langIcon.textContent = currentLang === 'pt' ? '🇺🇸' : '🇧🇷';
+        }
+        if (langToggle) {
+            langToggle.setAttribute('title', currentLang === 'pt' ? 'Change to English' : 'Mudar para Português');
+        }
+    }
+
+    // Initialize language
+    loadTranslations();
+
+    // Language toggle event
+    const langToggle = document.querySelector('.lang-toggle');
+    if (langToggle) {
+        langToggle.addEventListener('click', function() {
+            currentLang = currentLang === 'pt' ? 'en' : 'pt';
+            localStorage.setItem('lang', currentLang);
+            applyTranslations();
+        });
+    }
+
     // Console Easter Egg
     console.log(
         '%cPare! 🛑 Você encontrou a área secreta dos devs! 🕵️‍♂️\n' +
@@ -86,6 +160,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         type() {
+            if (!this.words || this.words.length === 0) {
+                setTimeout(() => this.type(), 500);
+                return;
+            }
             const current = this.wordIndex % this.words.length;
             const fullTxt = this.words[current];
 
@@ -114,13 +192,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
             setTimeout(() => this.type(), typeSpeed);
         }
+
+        updateWords(newWords) {
+            this.words = newWords;
+            this.wordIndex = 0;
+            this.isDeleting = false;
+            this.txt = '';
+        }
     }
 
     const typingText = document.querySelector('.typing-text');
-    const words = ['Desenvolvedor Full Stack', 'Especialista em IA', 'React & Angular Dev', 'TypeScript Enthusiast', 'Inovador em Tecnologia'];
-    
     if (typingText) {
-        new TypeWriter(typingText, words);
+        twInstance = new TypeWriter(typingText, []);
+        // initial words will be loaded by applyTranslations -> updateWords
     }
 
     // Intersection Observer for animations
@@ -330,44 +414,118 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // GitHub Stats and Contribution Graph
     const GITHUB_USERNAME = 'danubiolagoa';
-    
-    // Initialize GitHub Calendar
-    if (typeof GitHubCalendar !== 'undefined') {
-        GitHubCalendar(".calendar", GITHUB_USERNAME, {
-            responsive: true,
-            tooltips: true,
-            global_stats: false
-        }).then(function() {
-            // Tentar atualizar o contador de commits se possível
-            const calendarGraph = document.querySelector('.js-yearly-contributions');
-            if (calendarGraph) {
-                const contributionText = calendarGraph.querySelector('h2');
-                if (contributionText) {
-                    // Texto ex: "2,345 contributions in the last year"
-                    // Regex para pegar o primeiro número (pode ter vírgula ou ponto)
-                    const text = contributionText.textContent;
-                    const match = text.match(/([\d,.]+)\s/);
-                    if (match) {
-                        const count = match[1];
-                        const commitsEl = document.getElementById('github-commits');
-                        if (commitsEl) commitsEl.textContent = count;
-                    }
-                }
-            }
-        }).catch(err => {
-            console.error("Erro ao carregar GitHub Calendar:", err);
-            const container = document.querySelector('.calendar');
-            if (container) {
+
+    // Render Contribution Graph for Current Year Only
+    async function renderContributionGraph() {
+        const container = document.querySelector('.calendar');
+        if (!container) return;
+
+        try {
+            // Usar API do GitHub Contributions com filtro do ano atual
+            const year = new Date().getFullYear();
+            const response = await fetch(`https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}?y=${year}`);
+            
+            if (!response.ok) throw new Error('Falha ao buscar contribuições');
+            
+            const data = await response.json();
+            const yearStr = year.toString();
+            const totalCommits = data.total && data.total[yearStr] ? data.total[yearStr] : 0;
+            
+            // Atribuir total ao contador
+            const commitsEl = document.getElementById('github-commits');
+            if (commitsEl) commitsEl.textContent = totalCommits;
+
+            const contributions = data.contributions || [];
+            
+            if (contributions.length === 0) {
                 container.innerHTML = `
                     <div style="text-align: center; padding: 2rem; color: var(--gray);">
-                        <p>Não foi possível carregar o gráfico de contribuições.</p>
-                        <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.8;">${err.message}</p>
-                        <a href="https://github.com/${GITHUB_USERNAME}" target="_blank" style="color: var(--accent); margin-top: 1rem; display: inline-block;">Ver no GitHub</a>
+                        <p>Sem contribuições em ${year} ainda.</p>
+                        <a href="https://github.com/${GITHUB_USERNAME}" target="_blank" style="color: var(--accent); margin-top: 1rem; display: inline-block;">Ver perfil no GitHub</a>
                     </div>
                 `;
+                return;
             }
-        });
+            
+            // Criar o gráfico personalizado
+            renderCustomGraph(container, contributions, year);
+            
+        } catch (err) {
+            console.error("Erro ao carregar gráfico de contribuições:", err);
+            // Fallback: mostrar gráfico do ano corrente
+            container.innerHTML = `
+                <div style="text-align: center; padding: 2rem; color: var(--gray);">
+                    <p>Gráfico de contribuições de ${year}</p>
+                    <div class="github-chart-wrapper">
+                        <img src="https://ghchart.rshah.org/${year}/${GITHUB_USERNAME}"
+                             alt="GitHub Contributions ${year}"
+                             style="width: 100%; max-width: 100%; height: auto;" />
+                    </div>
+                </div>
+            `;
+        }
     }
+    
+    // Renderizar gráfico personalizado para o ano corrente
+    function renderCustomGraph(container, contributions, year) {
+        // Agrupar contribuições por semana
+        const weeksData = {};
+        const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+        
+        contributions.forEach(c => {
+            const date = new Date(c.date + 'T00:00:00');
+            const week = getWeekNumber(date);
+            const day = date.getDay();
+            
+            weeksData[week] = weeksData[week] || Array(7).fill({ count: 0, level: 0 });
+            weeksData[week][day] = { count: c.count, level: c.level || 0 };
+        });
+        
+        let html = '<div class="contribution-graph-container">';
+        
+        // Labels dos meses
+        html += '<div class="months-row">';
+        months.forEach(m => {
+            html += `<span class="month">${m}</span>`;
+        });
+        html += '</div>';
+        
+        // Grid de contribuições
+        html += '<div class="graph-grid">';
+        for (let week = 1; week <= 53; week++) {
+            html += '<div class="week-column">';
+            const weekDays = weeksData[week] || Array(7).fill({ count: 0, level: 0 });
+            for (let day = 0; day < 7; day++) {
+                const { count, level } = weekDays[day];
+                html += `<div class="day-cell level-${level}" title="${count} contribuições"></div>`;
+            }
+            html += '</div>';
+        }
+        html += '</div>';
+        
+        // Legenda
+        html += '<div class="graph-legend">';
+        html += '<span>Menos</span>';
+        for (let i = 0; i <= 4; i++) {
+            html += `<div class="legend-cell level-${i}"></div>`;
+        }
+        html += '<span>Mais</span>';
+        html += '</div>';
+        
+        html += '</div>';
+        container.innerHTML = html;
+    }
+
+    // Helper: Get week number from date
+    function getWeekNumber(d) {
+        d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+        d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+        const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+        return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+    }
+
+    // Initialize GitHub Calendar and Graph
+    renderContributionGraph();
 
     async function fetchGitHubStats() {
         try {
@@ -420,11 +578,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         } catch (error) {
             console.error('GitHub stats fetch error:', error);
-            // Fallback content in case of error
+            // Fallback: mostrar mensagem de erro visível nos cards
             const reposEl = document.getElementById('github-repos');
             const starsEl = document.getElementById('github-stars');
-            if (reposEl && reposEl.textContent === '0') reposEl.textContent = '-';
-            if (starsEl && starsEl.textContent === '0') starsEl.textContent = '-';
+            const langsEl = document.getElementById('languages-list');
+            if (reposEl) reposEl.textContent = '!';
+            if (starsEl) starsEl.textContent = '!';
+            if (langsEl) langsEl.innerHTML = '<div class="lang-item" style="color: var(--gray); font-size: 0.85rem;">Erro ao carregar</div>';
         }
     }
     

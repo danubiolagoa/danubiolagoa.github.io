@@ -50,19 +50,24 @@
                     <span class="logo-bracket">/&gt;</span>
                 </a>
                 <ul class="nav-menu">
-                    <li><a href="#inicio" class="nav-link">Início</a></li>
-                    <li><a href="#sobre" class="nav-link">Sobre</a></li>
-                    <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
-                    <li><a href="#projetos" class="nav-link">Projetos</a></li>
-                    <li><a href="#certificados" class="nav-link">Certificados</a></li>
-                    <li><a href="#contato" class="nav-link">Contato</a></li>
+                    <li><a href="#inicio" class="nav-link" data-i18n="nav.inicio">Início</a></li>
+                    <li><a href="#sobre" class="nav-link" data-i18n="nav.sobre">Sobre</a></li>
+                    <li><a href="#habilidades" class="nav-link" data-i18n="nav.habilidades">Habilidades</a></li>
+                    <li><a href="#projetos" class="nav-link" data-i18n="nav.projetos">Projetos</a></li>
+                    <li><a href="#certificados" class="nav-link" data-i18n="nav.certificados">Certificados</a></li>
+                    <li><a href="#contato" class="nav-link" data-i18n="nav.contato">Contato</a></li>
                 </ul>
-                <button class="pixel-toggle" aria-label="Modo Pixel Art" title="Modo Pixel Art">
-                    <span class="pixel-icon">👾</span>
-                </button>
-                <button class="menu-toggle" aria-label="Menu">
-                    <span></span><span></span><span></span>
-                </button>
+                <div class="nav-actions">
+                    <button class="menu-toggle" aria-label="Menu">
+                        <span></span><span></span><span></span>
+                    </button>
+                    <button class="pixel-toggle" aria-label="Modo Pixel Art" title="Modo Pixel Art">
+                        <span class="pixel-icon">👾</span>
+                    </button>
+                    <button class="lang-toggle" aria-label="Change Language" title="Change to English">
+                        <span class="lang-icon">🇺🇸</span>
+                    </button>
+                </div>
             </nav>
         </div>
     </header>
@@ -73,27 +78,27 @@
             <div class="hero-content">
                 <div class="hero-badge">
                     <span class="badge-dot"></span>
-                    Disponível para projetos
+                    <span data-i18n="hero.badge">Disponível para projetos</span>
                 </div>
                 <h1 class="hero-title">
-                    Olá, sou
+                    <span data-i18n="hero.title.greeting">Olá, sou</span>
                     <span class="gradient-text">Danúbio Lagoa</span>
                 </h1>
                 <div class="typing-container">
                     <span class="typing-text"></span>
                     <span class="typing-cursor"></span>
                 </div>
-                <p class="hero-description">
+                <p class="hero-description" data-i18n="hero.description">
                     Especialista em Desenvolvimento Full Stack com TypeScript, JavaScript, React, Angular e CSS.
                     Sempre por dentro das principais inovações de IA como Cursor, Trae, Claude Code, OpenCode e Codex.
                     Formado em Administração de Empresas e Engenharia Civil.
                 </p>
                 <div class="hero-buttons">
                     <a href="#projetos" class="btn btn-primary">
-                        <span>Ver Projetos</span>
+                        <span data-i18n="hero.btn.projetos">Ver Projetos</span>
                     </a>
                     <a href="#contato" class="btn btn-secondary">
-                        <span>Entre em Contato</span>
+                        <span data-i18n="hero.btn.contato">Entre em Contato</span>
                     </a>
                 </div>
                 <!-- <div class="hero-stats">
@@ -149,8 +154,8 @@
     <section id="sobre" class="about section">
         <div class="container">
             <div class="section-header">
-                <span class="section-subtitle">Sobre Mim</span>
-                <h2 class="section-title">Quem sou eu?</h2>
+                <span class="section-subtitle" data-i18n="about.subtitle">Sobre Mim</span>
+                <h2 class="section-title" data-i18n="about.title">Quem sou eu?</h2>
             </div>
             <div class="about-content">
                 <div class="about-image">
@@ -167,8 +172,8 @@
                                     </div>
                                     <div class="id-card-info">
                                         <div class="id-name">Danúbio Lagoa</div>
-                                        <div class="id-role">Full Stack Dev</div>
-                                        <div class="id-specialty">AI Specialist</div>
+                                        <div class="id-role" data-i18n="id.role">Dev Full Stack</div>
+                                        <div class="id-specialty" data-i18n="id.specialty">Especialista em IA</div>
                                     </div>
                                 </div>
                                 <div class="id-card-footer">
@@ -180,23 +185,23 @@
                     </div>
                 </div>
                 <div class="about-text">
-                    <h3>Desenvolvimento Moderno com <span class="gradient-text">foco em inovação</span></h3>
-                    <p>
+                    <h3 data-i18n="about.heading">Desenvolvimento Moderno com <span class="gradient-text">foco em inovação</span></h3>
+                    <p data-i18n="about.text1">
                         Sou formado em Administração de Empresas e Engenharia Civil, o que me dá
                         uma visão única e multidisciplinar para resolver problemas através da tecnologia.
                         Minha trajetória combina conhecimento de negócios com expertise técnica.
                     </p>
-                    <p>
+                    <p data-i18n="about.text2">
                         Especialista em Desenvolvimento Web, utilizo TypeScript, JavaScript, React, Angular e CSS
                         para criar soluções modernas e eficientes. Estou sempre por dentro das principais
                         inovações de IA, utilizando ferramentas como Cursor, Trae, Claude Code, OpenCode e Codex
                         para maximizar produtividade e qualidade.
                     </p>
-                    <p>
+                    <p data-i18n="about.text3">
                         Acredito no aprendizado contínuo e me atualizo constantemente para entregar
                         sempre o melhor em cada projeto.
                     </p>
-                    <a href="#" class="btn btn-outline">Download CV</a>
+                    <a href="#" class="btn btn-outline" data-i18n="about.cv">Download CV</a>
                 </div>
             </div>
         </div>
@@ -206,54 +211,54 @@
     <section id="habilidades" class="skills section">
         <div class="container">
             <div class="section-header">
-                <span class="section-subtitle">Habilidades</span>
-                <h2 class="section-title">Tecnologias que Domino</h2>
+                <span class="section-subtitle" data-i18n="skills.subtitle">Habilidades</span>
+                <h2 class="section-title" data-i18n="skills.title">Tecnologias que Domino</h2>
             </div>
             <div class="skills-grid">
                 <div class="skill-card" data-skill="95">
-                    <h4>Desenvolvimento Full Stack</h4>
+                    <h4 data-i18n="skill.fullstack">Desenvolvimento Full Stack</h4>
                     <div class="skill-bar">
                         <div class="skill-progress" style="--progress: 95%"></div>
                     </div>
                 </div>
                 <div class="skill-card" data-skill="90">
-                    <h4>TypeScript</h4>
+                    <h4 data-i18n="skill.typescript">TypeScript</h4>
                     <div class="skill-bar">
                         <div class="skill-progress" style="--progress: 90%"></div>
                     </div>
                 </div>
                 <div class="skill-card" data-skill="88">
-                    <h4>React</h4>
+                    <h4 data-i18n="skill.react">React</h4>
                     <div class="skill-bar">
                         <div class="skill-progress" style="--progress: 88%"></div>
                     </div>
                 </div>
                 <div class="skill-card" data-skill="85">
-                    <h4>Angular</h4>
+                    <h4 data-i18n="skill.angular">Angular</h4>
                     <div class="skill-bar">
                         <div class="skill-progress" style="--progress: 85%"></div>
                     </div>
                 </div>
                 <div class="skill-card" data-skill="87">
-                    <h4>JavaScript</h4>
+                    <h4 data-i18n="skill.javascript">JavaScript</h4>
                     <div class="skill-bar">
                         <div class="skill-progress" style="--progress: 87%"></div>
                     </div>
                 </div>
                 <div class="skill-card" data-skill="90">
-                    <h4>CSS & Estilização</h4>
+                    <h4 data-i18n="skill.css">CSS & Estilização</h4>
                     <div class="skill-bar">
                         <div class="skill-progress" style="--progress: 90%"></div>
                     </div>
                 </div>
                 <div class="skill-card" data-skill="92">
-                    <h4>IA & Ferramentas (Cursor, Trae, Claude Code, OpenCode, Codex)</h4>
+                    <h4 data-i18n="skill.ia">IA & Ferramentas (Cursor, Trae, Claude Code, OpenCode, Codex)</h4>
                     <div class="skill-bar">
                         <div class="skill-progress" style="--progress: 92%"></div>
                     </div>
                 </div>
                 <div class="skill-card" data-skill="85">
-                    <h4>Gestão & Negócios</h4>
+                    <h4 data-i18n="skill.gestao">Gestão & Negócios</h4>
                     <div class="skill-bar">
                         <div class="skill-progress" style="--progress: 85%"></div>
                     </div>
@@ -263,9 +268,9 @@
             <!-- GitHub Stats Section -->
             <div class="github-section">
                 <div class="github-header">
-                    <h3>GitHub Activity</h3>
+                    <h3 data-i18n="github.activity">Atividade no GitHub</h3>
                     <a href="https://github.com/danubiolagoa" target="_blank" rel="noopener noreferrer" class="github-link">
-                        <span>Ver perfil no GitHub</span>
+                        <span data-i18n="github.link">Ver perfil no GitHub</span>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
                         </svg>
@@ -277,40 +282,40 @@
                             <svg class="github-icon" viewBox="0 0 16 16" fill="currentColor">
                                 <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
                             </svg>
-                            <span>GitHub Stats</span>
+                            <span data-i18n="github.stats">Estatísticas do GitHub</span>
                         </div>
                         <div class="stat-grid">
                             <div class="stat-item">
                                 <span class="stat-value" id="github-repos">--</span>
-                                <span class="stat-label">Repositórios</span>
+                                <span class="stat-label" data-i18n="github.repos">Repositórios</span>
                             </div>
                             <div class="stat-item">
                                 <span class="stat-value" id="github-commits">--</span>
-                                <span class="stat-label">Commits</span>
+                                <span class="stat-label" data-i18n="github.stats.commits">Commits</span>
                             </div>
                             <div class="stat-item">
                                 <span class="stat-value" id="github-stars">--</span>
-                                <span class="stat-label">Stars</span>
+                                <span class="stat-label" data-i18n="github.stars">Stars</span>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="github-stat-card languages-card">
                         <div class="stat-header">
                             <svg class="code-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polyline points="16 18 22 12 16 6"></polyline>
                                 <polyline points="8 6 2 12 8 18"></polyline>
                             </svg>
-                            <span>Linguagens</span>
+                            <span data-i18n="github.languages">Linguagens</span>
                         </div>
                         <div class="languages-list" id="languages-list">
-                            <div class="loading-langs">Carregando...</div>
+                            <div class="loading-langs" data-i18n="github.loading">Carregando...</div>
                         </div>
                     </div>
                 </div>
                 <div class="github-calendar">
                     <div id="contribution-graph" class="contribution-graph-container calendar">
-                        <div class="loading-graph">Carregando gráfico de contribuições...</div>
+                        <div class="loading-graph" data-i18n="github.loading.graph">Carregando gráfico de contribuições...</div>
                     </div>
                 </div>
             </div>
@@ -321,8 +326,8 @@
     <section id="projetos" class="projects section">
         <div class="container">
             <div class="section-header">
-                <span class="section-subtitle">Portfólio</span>
-                <h2 class="section-title">Projetos em Destaque</h2>
+                <span class="section-subtitle" data-i18n="projects.subtitle">Portfólio</span>
+                <h2 class="section-title" data-i18n="projects.title">Projetos em Destaque</h2>
             </div>
             <div class="projects-grid">
                 <div class="project-card">
@@ -331,7 +336,7 @@
                     </div>
                     <div class="project-content">
                         <h3>ConnexHub</h3>
-                        <p>Sistema completo de gestão para condomínios, otimizando a administração e comunicação entre moradores.</p>
+                        <p data-i18n="project.connexhub.desc">Sistema completo de gestão para condomínios, otimizando a administração e comunicação entre moradores.</p>
                         <div class="project-tags">
                             <span>TypeScript</span>
                             <span>Node.js</span>
@@ -345,7 +350,7 @@
                     </div>
                     <div class="project-content">
                         <h3>Orçagenius</h3>
-                        <p>Software para orçamentos de obras com integração de bases governamentais e cálculo automático.</p>
+                        <p data-i18n="project.orcagenius.desc">Software para orçamentos de obras com integração de bases governamentais e cálculo automático.</p>
                         <div class="project-tags">
                             <span>React</span>
                             <span>Node.js</span>
@@ -359,7 +364,7 @@
                     </div>
                     <div class="project-content">
                         <h3>DL-Terças</h3>
-                        <p>Ferramentas personalizadas para áreas profissionais específicas.</p>
+                        <p data-i18n="project.dltercas.desc">Ferramentas personalizadas para áreas profissionais específicas.</p>
                         <div class="project-tags">
                             <span>React</span>
                             <span>Node.js</span>
@@ -375,8 +380,8 @@
     <section id="certificados" class="certificates section">
         <div class="container">
             <div class="section-header">
-                <span class="section-subtitle">Qualificações</span>
-                <h2 class="section-title">Meus Certificados</h2>
+                <span class="section-subtitle" data-i18n="certificates.subtitle">Qualificações</span>
+                <h2 class="section-title" data-i18n="certificates.title">Meus Certificados</h2>
             </div>
             <div class="certificates-grid">
                 <!-- Certificado Ada Tech -->
@@ -385,31 +390,31 @@
                         <img src="assets/bancodedados-ada.png" alt="Certificado Ada Tech - Banco de Dados">
                     </div>
                     <div class="certificate-content">
-                        <h3>Banco de Dados</h3>
+                        <h3 data-i18n="cert.database">Banco de Dados</h3>
                         <p class="certificate-issuer">Ada Tech</p>
-                        <p class="certificate-date">Fev/2026 • 2h</p>
+                        <p class="certificate-date"><span data-i18n="cert.date.feb26">Fev/2026</span> • 2h</p>
                         <div class="credential-box">
-                            <span class="credential-label">Código Credencial</span>
+                            <span class="credential-label" data-i18n="cert.credential">Código Credencial</span>
                             <span class="credential-code">8d928c77-305c-8f4c-3792-8c51164967a6</span>
                         </div>
-                        <a href="https://ada.tech/certificado?code=8d928c77-305c-8f4c-3792-8c51164967a6" target="_blank" class="btn btn-sm btn-outline">Ver Credencial</a>
+                        <a href="https://ada.tech/certificado?code=8d928c77-305c-8f4c-3792-8c51164967a6" target="_blank" class="btn btn-sm btn-outline" data-i18n="cert.view">Ver Credencial</a>
                     </div>
                 </div>
-                
+
                 <!-- Certificado DIO -->
                 <div class="certificate-card">
                     <div class="certificate-image">
                         <img src="assets/bootcamp-caixa-ia-dio.png" alt="Certificado DIO - IA na Prática">
                     </div>
                     <div class="certificate-content">
-                        <h3>IA na Prática (CAIXA)</h3>
+                        <h3 data-i18n="cert.ia">IA na Prática (CAIXA)</h3>
                         <p class="certificate-issuer">DIO & Microsoft</p>
-                        <p class="certificate-date">Fev/2026 • 28h</p>
+                        <p class="certificate-date"><span data-i18n="cert.date.feb26">Fev/2026</span> • 28h</p>
                         <div class="credential-box">
-                            <span class="credential-label">Código Credencial</span>
+                            <span class="credential-label" data-i18n="cert.credential">Código Credencial</span>
                             <span class="credential-code">9IVNU45R</span>
                         </div>
-                        <a href="https://www.dio.me/certificate/9IVNU45R" target="_blank" class="btn btn-sm btn-outline">Ver Credencial</a>
+                        <a href="https://www.dio.me/certificate/9IVNU45R" target="_blank" class="btn btn-sm btn-outline" data-i18n="cert.view">Ver Credencial</a>
                     </div>
                 </div>
 
@@ -419,14 +424,14 @@
                         <img src="assets/cursorpy-santander.png" alt="Certificado Santander - Cursor com Python & IA">
                     </div>
                     <div class="certificate-content">
-                        <h3>Cursor com Python & IA</h3>
+                        <h3 data-i18n="cert.cursor">Cursor com Python & IA</h3>
                         <p class="certificate-issuer">Santander Open Academy</p>
-                        <p class="certificate-date">Fev/2026 • 8h</p>
+                        <p class="certificate-date"><span data-i18n="cert.date.feb26">Fev/2026</span> • 8h</p>
                         <div class="credential-box">
-                            <span class="credential-label">Código Credencial</span>
+                            <span class="credential-label" data-i18n="cert.credential">Código Credencial</span>
                             <span class="credential-code">OA-2026-0219002272456</span>
                         </div>
-                        <a href="#" class="btn btn-sm btn-outline">Ver Credencial</a>
+                        <a href="#" class="btn btn-sm btn-outline" data-i18n="cert.view">Ver Credencial</a>
                     </div>
                 </div>
             </div>
@@ -437,30 +442,30 @@
     <section id="contato" class="contact section">
         <div class="container">
             <div class="section-header">
-                <span class="section-subtitle">Contato</span>
-                <h2 class="section-title">Vamos trabalhar juntos?</h2>
+                <span class="section-subtitle" data-i18n="contact.subtitle">Contato</span>
+                <h2 class="section-title" data-i18n="contact.title">Vamos trabalhar juntos?</h2>
             </div>
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="contact-mini-card">
                         <div class="mini-card-icon">📧</div>
                         <div class="mini-card-details">
-                            <h3>Email</h3>
+                            <h3 data-i18n="contact.email">Email</h3>
                             <p>danubiolagoa@gmail.com</p>
                         </div>
                     </div>
                     <div class="contact-mini-card">
                         <div class="mini-card-icon">📱</div>
                         <div class="mini-card-details">
-                            <h3>WhatsApp</h3>
+                            <h3 data-i18n="contact.whatsapp">WhatsApp</h3>
                             <p>+55 (85) 98208-1965</p>
                         </div>
                     </div>
                     <div class="contact-mini-card">
                         <div class="mini-card-icon">📍</div>
                         <div class="mini-card-details">
-                            <h3>Localização</h3>
-                            <p>Fortaleza, Ceará - Brasil</p>
+                            <h3 data-i18n="contact.location">Localização</h3>
+                            <p data-i18n="contact.location.val">Fortaleza, Ceará - Brasil</p>
                         </div>
                     </div>
                 </div>
@@ -472,18 +477,18 @@
                     <input type="hidden" name="_template" value="table">
 
                     <div class="form-group">
-                        <label for="name" class="sr-only">Seu Nome</label>
-                        <input type="text" id="name" name="name" placeholder="Seu Nome" required>
+                        <label for="name" class="sr-only" data-i18n="contact.form.name">Seu Nome</label>
+                        <input type="text" id="name" name="name" data-i18n-placeholder="contact.form.name" placeholder="Seu Nome" required>
                     </div>
                     <div class="form-group">
-                        <label for="email" class="sr-only">Seu Email</label>
-                        <input type="email" id="email" name="email" placeholder="Seu Email" required>
+                        <label for="email" class="sr-only" data-i18n="contact.form.email">Seu Email</label>
+                        <input type="email" id="email" name="email" data-i18n-placeholder="contact.form.email" placeholder="Seu Email" required>
                     </div>
                     <div class="form-group">
-                        <label for="message" class="sr-only">Sua Mensagem</label>
-                        <textarea id="message" name="message" placeholder="Sua Mensagem" rows="5" required></textarea>
+                        <label for="message" class="sr-only" data-i18n="contact.form.message">Sua Mensagem</label>
+                        <textarea id="message" name="message" data-i18n-placeholder="contact.form.message" placeholder="Sua Mensagem" rows="5" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                    <button type="submit" class="btn btn-primary" data-i18n="contact.form.send">Enviar Mensagem</button>
                 </form>
             </div>
         </div>
@@ -493,15 +498,15 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2026 Danúbio Lagoa. Todos os direitos reservados.</p>
+                <p data-i18n="footer.copyright">&copy; 2026 Danúbio Lagoa. Todos os direitos reservados.</p>
                 <div class="social-links">
                     <a href="https://github.com/danubiolagoa" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="btn btn-sm btn-secondary">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                        GitHub
+                        <span data-i18n="footer.github">GitHub</span>
                     </a>
                     <a href="https://www.linkedin.com/in/danubiolagoa/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="btn btn-sm btn-secondary">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                        LinkedIn
+                        <span data-i18n="footer.linkedin">LinkedIn</span>
                     </a>
                 </div>
             </div>
@@ -515,7 +520,6 @@
         <div id="caption" class="modal-caption"></div>
     </div>
 
-    <script src="assets/github-calendar.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
