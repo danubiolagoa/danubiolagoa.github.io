@@ -1018,18 +1018,21 @@ section, header, footer {
 }
 
 .months-row {
-    display: flex;
-    gap: 2px;
+    display: grid;
+    /* gap must align with graph-grid */
+    gap: 3px;
     margin-bottom: 0.5rem;
-    padding-left: 30px;
+    height: 15px;
+    position: relative;
     min-width: fit-content;
 }
 
-.month {
+.months-row .month {
     font-size: 0.65rem;
     color: var(--gray);
-    width: 48px;
-    text-align: center;
+    text-align: left;
+    white-space: nowrap;
+    width: auto;
 }
 
 .graph-grid {
@@ -1104,15 +1107,7 @@ section, header, footer {
         font-size: 0.75rem;
     }
 
-    .months-row {
-        padding-left: 0;
-        gap: 4px;
-    }
-    
-    .month {
-        min-width: 32px;
-        font-size: 0.6rem;
-    }
+    /* Months row layout is managed cleanly by grid templates in script.js */
     
     .contribution-graph-container {
         padding-bottom: 1rem;
@@ -1344,12 +1339,38 @@ section, header, footer {
     flex-wrap: wrap;
 }
 
-.project-tag {
+.project-tag,
+.project-tags span {
     font-size: 0.75rem;
     padding: 0.25rem 0.75rem;
     background: rgba(99, 102, 241, 0.1);
     color: var(--accent);
     border-radius: 50px;
+}
+
+.project-git-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-top: 0.75rem;
+}
+
+.project-git-link:hover {
+    color: var(--primary);
+    transform: translateX(4px);
+}
+
+.project-git-link svg {
+    transition: transform 0.3s ease;
+}
+
+.project-git-link:hover svg {
+    transform: rotate(10deg) scale(1.1);
 }
 
 .project-title {
@@ -2252,6 +2273,32 @@ body.pixel-mode .lang-toggle:hover {
     box-shadow: 2px 2px 0 0 var(--accent);
 }
 
+body.pixel-mode .nav-menu {
+    border-radius: 0 !important;
+    border: 2px solid var(--light) !important;
+    box-shadow: 6px 6px 0 0 rgba(0,0,0,0.5) !important;
+    background: #000 !important;
+}
+
+body.pixel-mode .nav-link {
+    font-size: 0.65rem !important;
+    border-radius: 0 !important;
+}
+
+body.pixel-mode .project-tags span {
+    font-size: 0.8rem;
+    border-radius: 0;
+    border: 1px solid var(--accent);
+    background: transparent;
+    padding: 0.15rem 0.5rem;
+}
+
+body.pixel-mode .project-git-link {
+    font-family: var(--pixel-font-title);
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+}
+
 /* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
@@ -2360,6 +2407,115 @@ body.pixel-mode .lang-toggle:hover {
         width: 40px;
         height: 40px;
     }
+}
+
+/* Clickable Contact Cards */
+.contact-mini-card.clickable {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.contact-mini-card.clickable:hover {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -10px rgba(99, 102, 241, 0.3);
+}
+
+.contact-mini-card.clickable:active {
+    transform: translateY(0);
+}
+
+/* Toast Notification */
+.toast-notification {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid var(--accent);
+    color: var(--light);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    box-shadow: 0 10px 25px -5px rgba(6, 182, 212, 0.4);
+    z-index: 10000;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.toast-notification::before {
+    content: "✓";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: var(--accent);
+    color: var(--dark);
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.toast-notification.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.toast-notification.hide {
+    transform: translateX(-50%) translateY(-20px);
+    opacity: 0;
+}
+
+/* Retro Pixel Toast & Contact Card overrides */
+body.pixel-mode .contact-mini-card.clickable {
+    border-radius: 0;
+    border: 2px solid var(--light);
+}
+
+body.pixel-mode .contact-mini-card.clickable:hover {
+    background: rgba(99, 102, 241, 0.15);
+    border-color: var(--primary);
+    transform: translate(2px, 2px);
+    box-shadow: 4px 4px 0 0 rgba(0,0,0,0.5);
+}
+
+body.pixel-mode .contact-mini-card.clickable:active {
+    transform: translate(4px, 4px);
+    box-shadow: 2px 2px 0 0 rgba(0,0,0,0.5);
+}
+
+body.pixel-mode .toast-notification {
+    border-radius: 0;
+    border: 2px solid var(--accent);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
+    font-family: var(--pixel-font-body);
+    font-size: 1.1rem;
+    background: #000;
+    transform: translateX(-50%) translateY(100px);
+}
+
+body.pixel-mode .toast-notification::before {
+    border-radius: 0;
+    background: var(--accent);
+    color: #000;
+}
+
+body.pixel-mode .toast-notification.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+body.pixel-mode .toast-notification.hide {
+    transform: translateX(-50%) translateY(-10px);
+    opacity: 0;
 }
 
 

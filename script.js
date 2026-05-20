@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let translations = {};
     let currentLang = localStorage.getItem('lang') || 'pt';
     let twInstance = null;
+    let lastWeeksData = null; // Guardar dados do gráfico localmente para tradução instantânea
 
     // Load translations
     async function loadTranslations() {
@@ -32,6 +33,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 el.setAttribute('placeholder', translations[currentLang][key]);
             }
         });
+
+        // Update document SEO tags dynamically
+        if (translations[currentLang]) {
+            if (translations[currentLang]['seo.title']) {
+                document.title = translations[currentLang]['seo.title'];
+                
+                const ogTitle = document.querySelector('meta[property="og:title"]');
+                if (ogTitle) ogTitle.setAttribute('content', translations[currentLang]['seo.title']);
+            }
+            if (translations[currentLang]['seo.description']) {
+                const metaDesc = document.querySelector('meta[name="description"]');
+                if (metaDesc) metaDesc.setAttribute('content', translations[currentLang]['seo.description']);
+                
+                const ogDesc = document.querySelector('meta[property="og:description"]');
+                if (ogDesc) ogDesc.setAttribute('content', translations[currentLang]['seo.description']);
+            }
+        }
+
+        // Re-renderizar gráfico de contribuições no idioma atual se os dados já estiverem carregados
+        if (lastWeeksData) {
+            const container = document.querySelector('.calendar');
+            if (container) {
+                renderCustomGraph(container, lastWeeksData);
+            }
+        }
 
         // Update lang toggle button
         updateLangButton();
@@ -415,17 +441,87 @@ document.addEventListener('DOMContentLoaded', function() {
     // GitHub Stats and Contribution Graph
     const GITHUB_USERNAME = 'danubiolagoa';
 
-    // Render Contribution Graph for Current Year Only
+    // Formatar data em string amigável dependendo do idioma
+    function formatDateString(dateStr) {
+        if (!dateStr) return '';
+        const d = new Date(dateStr + 'T00:00:00');
+        const day = d.getDate();
+        const month = d.getMonth();
+        const year = d.getFullYear();
+        
+        const monthNames = currentLang === 'pt'
+            ? ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+            : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            
+        return currentLang === 'pt'
+            ? `${day} de ${monthNames[month]} de ${year}`
+            : `${monthNames[month]} ${day}, ${year}`;
+    }
+
+    // Converter dados planos da API em semanas agrupadas para unificar com o formato local
+    function convertFlatToWeeks(contributions) {
+        const sorted = [...contributions].sort((a, b) => a.date.localeCompare(b.date));
+        if (sorted.length === 0) return [];
+        
+        const firstDate = new Date(sorted[0].date + 'T00:00:00');
+        const firstDayOfWeek = firstDate.getDay(); // 0 é Domingo
+        
+        const paddedDays = [];
+        if (firstDayOfWeek > 0) {
+            for (let i = 0; i < firstDayOfWeek; i++) {
+                const padDate = new Date(firstDate);
+                padDate.setDate(firstDate.getDate() - (firstDayOfWeek - i));
+                const dateStr = padDate.toISOString().split('T')[0];
+                paddedDays.push({ date: dateStr, count: 0, level: 0 });
+            }
+        }
+        
+        const allDays = [...paddedDays, ...sorted];
+        
+        const weeks = [];
+        for (let i = 0; i < allDays.length; i += 7) {
+            const week = allDays.slice(i, i + 7);
+            while (week.length < 7) {
+                const lastDay = new Date(week[week.length - 1].date + 'T00:00:00');
+                lastDay.setDate(lastDay.getDate() + 1);
+                const dateStr = lastDay.toISOString().split('T')[0];
+                week.push({ date: dateStr, count: 0, level: 0 });
+            }
+            weeks.push(week);
+        }
+        return weeks;
+    }
+
+    // Render Contribution Graph
     async function renderContributionGraph() {
         const container = document.querySelector('.calendar');
         if (!container) return;
 
+        // 1. Tentar carregar localmente de github-stats.json (muito mais rápido, estável e imune a CORS/rate limiting)
         try {
-            // Usar API do GitHub Contributions com filtro do ano atual
-            const year = new Date().getFullYear();
+            const localResponse = await fetch('github-stats.json');
+            if (localResponse.ok) {
+                const data = await localResponse.json();
+                
+                // Atribuir total ao contador
+                const commitsEl = document.getElementById('github-commits');
+                if (commitsEl) commitsEl.textContent = data.totalContributions || 0;
+                
+                if (data.weeks && data.weeks.length > 0) {
+                    lastWeeksData = data.weeks;
+                    renderCustomGraph(container, lastWeeksData);
+                    return;
+                }
+            }
+        } catch (localErr) {
+            console.warn("Falha ao carregar github-stats.json local:", localErr);
+        }
+
+        // 2. Fallback: tentar API externa do GitHub Contributions
+        const year = new Date().getFullYear();
+        try {
             const response = await fetch(`https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}?y=${year}`);
-            
-            if (!response.ok) throw new Error('Falha ao buscar contribuições');
+            if (!response.ok) throw new Error('Falha ao buscar contribuições da API externa');
             
             const data = await response.json();
             const yearStr = year.toString();
@@ -436,27 +532,20 @@ document.addEventListener('DOMContentLoaded', function() {
             if (commitsEl) commitsEl.textContent = totalCommits;
 
             const contributions = data.contributions || [];
-            
             if (contributions.length === 0) {
-                container.innerHTML = `
-                    <div style="text-align: center; padding: 2rem; color: var(--gray);">
-                        <p>Sem contribuições em ${year} ainda.</p>
-                        <a href="https://github.com/${GITHUB_USERNAME}" target="_blank" style="color: var(--accent); margin-top: 1rem; display: inline-block;">Ver perfil no GitHub</a>
-                    </div>
-                `;
-                return;
+                throw new Error('Lista de contribuições vazia');
             }
             
-            // Criar o gráfico personalizado
-            renderCustomGraph(container, contributions, year);
+            lastWeeksData = convertFlatToWeeks(contributions);
+            renderCustomGraph(container, lastWeeksData);
             
         } catch (err) {
-            console.error("Erro ao carregar gráfico de contribuições:", err);
-            // Fallback: mostrar gráfico do ano corrente
+            console.error("Erro no fallback de API externa de contribuições:", err);
+            // 3. Fallback de último nível: mostrar imagem estática de contribuições do ano corrente
             container.innerHTML = `
                 <div style="text-align: center; padding: 2rem; color: var(--gray);">
-                    <p>Gráfico de contribuições de ${year}</p>
-                    <div class="github-chart-wrapper">
+                    <p data-i18n="github.loading.graph">${currentLang === 'pt' ? 'Gráfico de contribuições' : 'Contribution graph'}</p>
+                    <div class="github-chart-wrapper" style="margin-top: 1rem;">
                         <img src="https://ghchart.rshah.org/${year}/${GITHUB_USERNAME}"
                              alt="GitHub Contributions ${year}"
                              style="width: 100%; max-width: 100%; height: auto;" />
@@ -466,38 +555,45 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Renderizar gráfico personalizado para o ano corrente
-    function renderCustomGraph(container, contributions, year) {
-        // Agrupar contribuições por semana
-        const weeksData = {};
-        const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-        
-        contributions.forEach(c => {
-            const date = new Date(c.date + 'T00:00:00');
-            const week = getWeekNumber(date);
-            const day = date.getDay();
-            
-            weeksData[week] = weeksData[week] || Array(7).fill({ count: 0, level: 0 });
-            weeksData[week][day] = { count: c.count, level: c.level || 0 };
-        });
+    // Renderizar gráfico baseado na grid estruturada de semanas (evita totalmente erros de alinhamento)
+    function renderCustomGraph(container, weeks) {
+        if (!weeks || weeks.length === 0) return;
         
         let html = '<div class="contribution-graph-container">';
         
-        // Labels dos meses
-        html += '<div class="months-row">';
-        months.forEach(m => {
-            html += `<span class="month">${m}</span>`;
-        });
+        // Labels dos meses com posicionamento dinâmico e preciso
+        const monthNames = currentLang === 'pt'
+            ? ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+            : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            
+        html += '<div class="months-row" style="display: grid; grid-template-columns: repeat(' + weeks.length + ', 12px); gap: 3px; position: relative;">';
+        let lastMonth = -1;
+        for (let i = 0; i < weeks.length; i++) {
+            const firstDayOfWeek = new Date(weeks[i][0].date + 'T00:00:00');
+            const currentMonth = firstDayOfWeek.getMonth();
+            if (currentMonth !== lastMonth) {
+                html += `<span class="month" style="grid-column-start: ${i + 1}; text-align: left; width: auto; display: inline-block; white-space: nowrap;">${monthNames[currentMonth]}</span>`;
+                lastMonth = currentMonth;
+            }
+        }
         html += '</div>';
         
         // Grid de contribuições
         html += '<div class="graph-grid">';
-        for (let week = 1; week <= 53; week++) {
+        for (let i = 0; i < weeks.length; i++) {
             html += '<div class="week-column">';
-            const weekDays = weeksData[week] || Array(7).fill({ count: 0, level: 0 });
+            const weekDays = weeks[i];
             for (let day = 0; day < 7; day++) {
-                const { count, level } = weekDays[day];
-                html += `<div class="day-cell level-${level}" title="${count} contribuições"></div>`;
+                const dayData = weekDays[day] || { count: 0, level: 0, date: '' };
+                const count = dayData.count || 0;
+                const level = dayData.level || 0;
+                const date = dayData.date || '';
+                
+                const tooltipText = currentLang === 'pt'
+                    ? `${count === 0 ? 'Sem' : count} contribuições em ${formatDateString(date)}`
+                    : `${count === 0 ? 'No' : count} contributions on ${formatDateString(date)}`;
+                    
+                html += `<div class="day-cell level-${level}" title="${tooltipText}"></div>`;
             }
             html += '</div>';
         }
@@ -505,26 +601,18 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Legenda
         html += '<div class="graph-legend">';
-        html += '<span>Menos</span>';
+        html += `<span>${currentLang === 'pt' ? 'Menos' : 'Less'}</span>`;
         for (let i = 0; i <= 4; i++) {
             html += `<div class="legend-cell level-${i}"></div>`;
         }
-        html += '<span>Mais</span>';
+        html += `<span>${currentLang === 'pt' ? 'Mais' : 'More'}</span>`;
         html += '</div>';
         
         html += '</div>';
         container.innerHTML = html;
     }
 
-    // Helper: Get week number from date
-    function getWeekNumber(d) {
-        d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-        d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
-        const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-        return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
-    }
-
-    // Initialize GitHub Calendar and Graph
+    // Inicializar carregamento do gráfico
     renderContributionGraph();
 
     async function fetchGitHubStats() {
@@ -661,5 +749,45 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     } else {
         console.error('Modal elements not found!');
+    }
+
+    // Email Copy to Clipboard Logic
+    const emailCard = document.getElementById('contact-email-card');
+    if (emailCard) {
+        emailCard.addEventListener('click', function() {
+            const email = "danubiolagoa@gmail.com";
+            navigator.clipboard.writeText(email).then(() => {
+                showToast(currentLang === 'pt' ? 'E-mail copiado para a área de transferência!' : 'Email copied to clipboard!');
+            }).catch(err => {
+                console.error('Could not copy email: ', err);
+            });
+        });
+    }
+
+    // Custom Toast Function
+    function showToast(message) {
+        // Remove existing toast if present
+        const existingToast = document.querySelector('.toast-notification');
+        if (existingToast) {
+            existingToast.remove();
+        }
+
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.textContent = message;
+        document.body.appendChild(toast);
+
+        // Slide in and then slide out
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 10);
+
+        setTimeout(() => {
+            toast.classList.remove('show');
+            toast.classList.add('hide');
+            setTimeout(() => {
+                toast.remove();
+            }, 300);
+        }, 3000);
     }
 });
