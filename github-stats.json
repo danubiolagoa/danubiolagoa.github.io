@@ -1,44 +1,7 @@
 {
-  "updatedAt": "2026-08-22T00:36:26.038Z",
-  "totalContributions": 1261,
+  "updatedAt": "2026-08-23T00:39:45.561Z",
+  "totalContributions": 1268,
   "weeks": [
-    [
-      {
-        "date": "2025-08-17",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-08-18",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-08-19",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-08-20",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-08-21",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-08-22",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-08-23",
-        "count": 0,
-        "level": 0
-      }
-    ],
     [
       {
         "date": "2025-08-24",
@@ -1954,11 +1917,18 @@
       },
       {
         "date": "2026-08-21",
-        "count": 19,
+        "count": 21,
         "level": 4
       },
       {
         "date": "2026-08-22",
+        "count": 5,
+        "level": 2
+      }
+    ],
+    [
+      {
+        "date": "2026-08-23",
         "count": 0,
         "level": 0
       }
