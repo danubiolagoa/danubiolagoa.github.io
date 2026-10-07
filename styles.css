@@ -1431,6 +1431,18 @@ section, header, footer {
     transform: scale(1.05);
 }
 
+.certificate-image.logo-contain {
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.certificate-image.logo-contain img {
+    object-fit: contain;
+    padding: 1.25rem;
+}
+
 .certificate-content {
     padding: 1.5rem;
     width: 100%;
