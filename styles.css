@@ -1508,6 +1508,65 @@ body.pixel-mode .certificate-image img {
     image-rendering: pixelated;
 }
 
+.certificate-image.education-cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.25), transparent 70%),
+                linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(2, 6, 23, 0.98));
+    position: relative;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.education-cover-icon {
+    font-size: 3.5rem;
+    filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.4));
+    transition: transform 0.3s ease;
+}
+
+.certificate-card:hover .education-cover-icon {
+    transform: scale(1.1) rotate(4deg);
+}
+
+.card-status-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(6, 182, 212, 0.15);
+    border: 1px solid rgba(6, 182, 212, 0.4);
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(4px);
+    z-index: 2;
+}
+
+.card-status-badge .badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent);
+    animation: pulse 2s infinite;
+}
+
+body.pixel-mode .card-status-badge {
+    border-radius: 0;
+    border: 2px solid var(--accent);
+    font-family: var(--pixel-font-body);
+}
+
+body.pixel-mode .education-cover {
+    border-bottom: 2px solid var(--light);
+}
+
 /* Contact Section */
 .contact-content {
     display: grid;
